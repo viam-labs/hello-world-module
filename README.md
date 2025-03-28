@@ -1,6 +1,9 @@
 # Module hello-world
 
-Provide a description of the purpose of the module and any relevant information.
+This repo contains example code for a Viam module that provides an example camera and sensor resource.
+To build it yourself, see the [Create a Hello World module guide](https://docs.viam.com/operate/get-started/other-hardware/hello-world-module/).
+
+Note that the example code in this repo uses the `jessamy` namespace, but you would use your own namespace when authoring your own module.
 
 ## Model jessamy:hello-world:hello-camera
 

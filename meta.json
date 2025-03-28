@@ -1,0 +1,33 @@
+{
+  "$schema": "https://dl.viam.dev/module.schema.json",
+  "module_id": "jessamy:hello-world",
+  "visibility": "private",
+  "url": "",
+  "description": "Modular camera component: hello-camera",
+  "models": [
+    {
+      "api": "rdk:component:camera",
+      "model": "jessamy:hello-world:hello-camera",
+      "short_description": "A camera that returns a static image.",
+      "markdown_link": "README.md#model-jessamyhello-worldhello-camera"
+    },
+    {
+      "api": "rdk:component:sensor",
+      "model": "jessamy:hello-world:hello-sensor",
+      "short_description": "A sensor that returns a random number.",
+      "markdown_link": "README.md#model-jessamyhello-worldhello-sensor"
+    }
+  ],
+  "entrypoint": "bin/hello-world",
+  "first_run": "",
+  "build": {
+    "build": "make module.tar.gz",
+    "setup": "make setup",
+    "path": "bin/module.tar.gz",
+    "arch": [
+      "linux/amd64",
+      "linux/arm64",
+      "darwin/amd64"
+    ]
+  }
+}

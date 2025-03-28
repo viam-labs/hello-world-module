@@ -1,0 +1,12 @@
+{
+  "module_name": "hello-world",
+  "namespace": "jessamy",
+  "language": "go",
+  "resource_type": "component",
+  "resource_subtype": "camera",
+  "model_name": "hello-camera",
+  "enable_cloud_build": false,
+  "initialize_git": false,
+  "generator_version": "0.1.0",
+  "generated_on": "2025-03-13T00:34:49.872935Z"
+}

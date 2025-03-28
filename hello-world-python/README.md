@@ -1,18 +1,21 @@
-# Module hello-world 
+# Module hello-world
 
-Provide a description of the purpose of the module and any relevant information.
+This repo contains example code for a Viam module that provides an example camera and sensor resource.
+To build it yourself, see the [Create a Hello World module guide](https://docs.viam.com/operate/get-started/other-hardware/hello-world-module/).
+
+Note that the example code in this repo uses the `jessamy` namespace, but you would use your own namespace when authoring your own module.
 
 ## Model jessamy:hello-world:hello-camera
 
-Provide a description of the model and any relevant information.
+A camera that returns a static image.
 
 ### Configuration
+
 The following attribute template can be used to configure this model:
 
 ```json
 {
-"attribute_1": <float>,
-"attribute_2": <string>
+  "image_path": <string>
 }
 ```
 
@@ -20,31 +23,22 @@ The following attribute template can be used to configure this model:
 
 The following attributes are available for this model:
 
-| Name          | Type   | Inclusion | Description                |
-|---------------|--------|-----------|----------------------------|
-| `attribute_1` | float  | Required  | Description of attribute 1 |
-| `attribute_2` | string | Optional  | Description of attribute 2 |
+| Name         | Type   | Inclusion | Description                      |
+|--------------|--------|-----------|----------------------------------|
+| `image_path` | string | Required  | The path to the image to return. |
 
 #### Example Configuration
 
 ```json
 {
-  "attribute_1": 1.0,
-  "attribute_2": "foo"
+  "image_path": "path/to/image.jpg"
 }
 ```
 
-### DoCommand
+## Model jessamy:hello-world:hello-sensor
 
-If your model implements DoCommand, provide an example payload of each command that is supported and the arguments that can be used. If your model does not implement DoCommand, remove this section.
+A sensor that returns a random number.
 
-#### Example DoCommand
+### Configuration
 
-```json
-{
-  "command_name": {
-    "arg1": "foo",
-    "arg2": 1
-  }
-}
-```
+This sensor does not have any configurable attributes.

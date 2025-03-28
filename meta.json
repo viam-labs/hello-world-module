@@ -2,8 +2,8 @@
   "$schema": "https://dl.viam.dev/module.schema.json",
   "module_id": "jessamy:hello-world",
   "visibility": "private",
-  "url": "",
-  "description": "Modular camera component: hello-camera",
+  "url": "https://github.com/viam-labs/hello-world-module",
+  "description": "Example camera and sensor components: hello-camera and hello-sensor",
   "models": [
     {
       "api": "rdk:component:camera",

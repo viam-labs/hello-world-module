@@ -5,7 +5,7 @@ import (
 	"helloworld"
 	"go.viam.com/rdk/logging"
 	"go.viam.com/rdk/resource"
-	"go.viam.com/rdk/components/camera"
+	camera "go.viam.com/rdk/components/camera"
 )
 
 func main() {

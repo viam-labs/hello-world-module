@@ -12,18 +12,16 @@ from viam.resource.base import ResourceBase
 from viam.resource.easy_resource import EasyResource
 from viam.resource.types import Model, ModelFamily
 from viam.utils import ValueTypes
+from viam.utils import struct_to_dict
 from viam.media.utils.pil import pil_to_viam_image
 from viam.media.video import CameraMimeType
-from viam.utils import struct_to_dict
 from PIL import Image
 
 
 class HelloCamera(Camera, EasyResource):
     # To enable debug-level logging, either run viam-server with the --debug option,
     # or configure your resource/machine to display debug logs.
-    MODEL: ClassVar[Model] = Model(
-        ModelFamily("jessamy", "hello-world"), "hello-camera"
-    )
+    MODEL: ClassVar[Model] = Model(ModelFamily("naomi", "hello-world"), "hello-camera")
 
     @classmethod
     def new(
@@ -34,7 +32,7 @@ class HelloCamera(Camera, EasyResource):
 
         Args:
             config (ComponentConfig): The configuration for this resource
-            dependencies (Mapping[ResourceName, ResourceBase]): The dependencies (both implicit and explicit)
+            dependencies (Mapping[ResourceName, ResourceBase]): The dependencies (both required and optional)
 
         Returns:
             Self: The resource
@@ -42,20 +40,24 @@ class HelloCamera(Camera, EasyResource):
         return super().new(config, dependencies)
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
+    def validate_config(
+        cls, config: ComponentConfig
+    ) -> Tuple[Sequence[str], Sequence[str]]:
         # Check that a path to get an image was configured
         fields = config.attributes.fields
-        if not "image_path" in fields:
+        if "image_path" not in fields:
             raise Exception("Missing image_path attribute.")
         elif not fields["image_path"].HasField("string_value"):
             raise Exception("image_path must be a string.")
-        return []
+
+        return [], []
 
     def reconfigure(
         self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]
     ):
         attrs = struct_to_dict(config.attributes)
         self.image_path = str(attrs.get("image_path"))
+
         return super().reconfigure(config, dependencies)
 
     async def get_image(
@@ -70,10 +72,18 @@ class HelloCamera(Camera, EasyResource):
         return pil_to_viam_image(img, CameraMimeType.JPEG)
 
     async def get_images(
-        self, *, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[List[NamedImage], ResponseMetadata]:
-        self.logger.error("`get_images` is not implemented")
-        raise NotImplementedError()
+        self,
+        *,
+        filter_source_names: Optional[Sequence[str]] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs
+    ) -> Tuple[Sequence[NamedImage], ResponseMetadata]:
+        img = Image.open(self.image_path)
+        vi_img = pil_to_viam_image(img, CameraMimeType.JPEG)
+        named = NamedImage("default", vi_img.data, vi_img.mime_type)
+        metadata = ResponseMetadata()
+        return [named], metadata
 
     async def get_point_cloud(
         self,
@@ -103,7 +113,7 @@ class HelloCamera(Camera, EasyResource):
 
     async def get_geometries(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
-    ) -> List[Geometry]:
+    ) -> Sequence[Geometry]:
         self.logger.error("`get_geometries` is not implemented")
         raise NotImplementedError()
 

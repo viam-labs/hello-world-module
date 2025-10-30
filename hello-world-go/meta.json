@@ -1,33 +1,36 @@
 {
   "$schema": "https://dl.viam.dev/module.schema.json",
-  "module_id": "jessamy:hello-world",
+  "module_id": "naomi:hello-world",
   "visibility": "private",
   "url": "https://github.com/viam-labs/hello-world-module",
   "description": "Example camera and sensor components: hello-camera and hello-sensor",
   "models": [
     {
       "api": "rdk:component:camera",
-      "model": "jessamy:hello-world:hello-camera",
-      "short_description": "A camera that returns a static image.",
-      "markdown_link": "README.md#model-jessamyhello-worldhello-camera"
+      "model": "naomi:hello-world:hello-camera",
+      "short_description": "A camera that returns an image.",
+      "markdown_link": "README.md#model-naomihello-worldhello-camera"
     },
     {
       "api": "rdk:component:sensor",
-      "model": "jessamy:hello-world:hello-sensor",
+      "model": "naomi:hello-world:hello-sensor",
       "short_description": "A sensor that returns a random number.",
-      "markdown_link": "README.md#model-jessamyhello-worldhello-sensor"
+      "markdown_link": "README.md#model-naomihello-worldhello-sensor"
     }
   ],
+  "applications": null,
+  "markdown_link": "README.md",
   "entrypoint": "bin/hello-world",
   "first_run": "",
   "build": {
     "build": "make module.tar.gz",
     "setup": "make setup",
-    "path": "bin/module.tar.gz",
+    "path": "module.tar.gz",
     "arch": [
       "linux/amd64",
       "linux/arm64",
-      "darwin/amd64"
+      "darwin/arm64",
+      "windows/amd64"
     ]
   }
 }

@@ -1,11 +1,9 @@
 # Module hello-world
 
 This repo contains example code for a Viam module that provides an example camera and sensor resource.
-To build it yourself, see the [Create a Hello World module guide](https://docs.viam.com/operate/get-started/other-hardware/hello-world-module/).
+To build it yourself, see the [Support additional hardware and software](https://docs.viam.com/operate/modules/support-hardware/).
 
-Note that the example code in this repo uses the `jessamy` namespace, but you would use your own namespace when authoring your own module.
-
-## Model jessamy:hello-world:hello-camera
+## Model naomi:hello-world:hello-camera
 
 A camera that returns a static image.
 
@@ -23,9 +21,9 @@ The following attribute template can be used to configure this model:
 
 The following attributes are available for this model:
 
-| Name         | Type   | Inclusion | Description                      |
-|--------------|--------|-----------|----------------------------------|
-| `image_path` | string | Required  | The path to the image to return. |
+| Name          | Type   | Inclusion | Description                      |
+|---------------|--------|-----------|----------------------------------|
+| `image_path`  | string | Required  | The path to the image to return. |
 
 #### Example Configuration
 
@@ -35,7 +33,7 @@ The following attributes are available for this model:
 }
 ```
 
-## Model jessamy:hello-world:hello-sensor
+## Model naomi:hello-world:hello-sensor
 
 A sensor that returns a random number.
 
